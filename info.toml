@@ -918,29 +918,20 @@ name = "threads2"
 path = "exercises/threads/threads2.rs"
 mode = "compile"
 hint = """
-`Arc` is an Atomic Reference Counted pointer that allows safe, shared access
-to **immutable** data. But we want to *change* the number of `jobs_completed`
-so we'll need to also use another type that will only allow one thread to
-mutate the data at a time. Take a look at this section of the book:
-https://doc.rust-lang.org/book/ch16-03-shared-state.html#atomic-reference-counting-with-arct
-and keep reading if you'd like more hints :)
+`Arc`是一个原子参考计数指针，允许安全、共享地访问**不可变的**数据。
+但是我们想*改变*的 "jobs_completed "的数量，
+所以我们还需要使用另一种类型，每次只允许一个线程来突变这些数据。
+请看一下本书的这一部分：https://doc.rust-lang.org/book/ch16-03-shared-state.html#atomic-reference-counting-with-arct，
+如果你想得到更多的提示，请继续阅读:)
 
+你现在是否在main的开头有一个`Arc``Mutex``JobStatus`？
+比如 `let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));`
+类似于书中例子的代码，发生在说 "我们可以用Arc<T>来解决这个问题 "的文字之后。
+如果没有，就试一试吧! 如果你做了并希望得到更多的提示，请继续阅读!
 
-Do you now have an `Arc` `Mutex` `JobStatus` at the beginning of main? Like:
-`let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));`
-Similar to the code in the example in the book that happens after the text
-that says "We can use Arc<T> to fix this.". If not, give that a try! If you
-do and would like more hints, keep reading!!
-
-
-Make sure neither of your threads are holding onto the lock of the mutex
-while they are sleeping, since this will prevent the other thread from
-being allowed to get the lock. Locks are automatically released when
-they go out of scope.
-
-If you've learned from the sample solutions, I encourage you to come
-back to this exercise and try it again in a few days to reinforce
-what you've learned :)"""
+确保你的线程在睡觉的时候都没有抓着mutex的锁，因为这将阻止其他线程被允许获得锁。
+当锁超出范围时，会自动释放。
+如果你已经从样本解决方案中学到了知识，我鼓励你过几天再来做这个练习，以巩固你所学到的知识 :)"""
 
 [[exercises]]
 name = "threads3"

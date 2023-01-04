@@ -1,9 +1,8 @@
 # Primitive Types
 
-Rust has a couple of basic types that are directly implemented into the
-compiler. In this section, we'll go through the most important ones.
+Rust有几个基本类型，直接在编译器中实现。在本节中，我们将介绍最重要的类型。
 
 ## Further information
 
-- [Data Types](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html)
-- [The Slice Type](https://doc.rust-lang.org/stable/book/ch04-03-slices.html)
+- [Data Types](https://www.rustwiki.org.cn/zh-CN/book/ch03-02-data-types.html)
+- [The Slice Type](https://www.rustwiki.org.cn/zh-CN/book/ch04-03-slices.html)

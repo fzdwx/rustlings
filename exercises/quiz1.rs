@@ -4,16 +4,21 @@
 // - Functions
 // - If
 
-// Mary is buying apples. The price of an apple is calculated as follows:
-// - An apple costs 2 rustbucks.
-// - If Mary buys more than 40 apples, each apple only costs 1 rustbuck!
-// Write a function that calculates the price of an order of apples given
-// the quantity bought. No hints this time!
+// 玛丽正在买苹果。一个苹果的价格计算如下:
+// - 一个苹果的价格是2锈币.
+// - 如果玛丽买了40个以上的苹果，每个苹果只需花费1个锈币!
+// 编写一个函数，在给定购买数量的情况下计算苹果订单的价格。
+// 这次没有提示！
 
-// I AM NOT DONE
 
 // Put your function here!
-// fn calculate_price_of_apples {
+fn calculate_price_of_apples(num: i32) -> i32 {
+    let mut price = 2;
+    if num > 40 {
+        price = 1;
+    }
+    price * num
+}
 
 // Don't modify this function!
 #[test]

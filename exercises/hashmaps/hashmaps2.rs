@@ -1,17 +1,13 @@
 // hashmaps2.rs
 
-// A basket of fruits in the form of a hash map is given. The key
-// represents the name of the fruit and the value represents how many
-// of that particular fruit is in the basket. You have to put *MORE
-// THAN 11* fruits in the basket. Three types of fruits - Apple (4),
-// Mango (2) and Lychee (5) are already given in the basket. You are
-// not allowed to insert any more of these fruits!
+// 给出了一个哈希图形式的一篮子水果。键代表水果的名称，
+// 值代表篮子里有多少个该水果。你必须在篮子里放*多于11*个水果。
+// 篮子里已经有三种水果--苹果（4）、芒果（2）和荔枝（5）。你不允许再放入任何这些水果了
 //
 // Make me pass the tests!
 //
 // Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 use std::collections::HashMap;
 
@@ -33,10 +29,11 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         Fruit::Pineapple,
     ];
 
+    // 苹果（4）、芒果（2）和荔枝（5）
     for fruit in fruit_kinds {
-        // TODO: Put new fruits if not already present. Note that you
-        // are not allowed to put any type of fruit that's already
-        // present!
+        if !basket.contains_key(&fruit){
+            basket.insert(fruit, 3);
+        }
     }
 }
 

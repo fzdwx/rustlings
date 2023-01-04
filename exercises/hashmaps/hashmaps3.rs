@@ -1,20 +1,14 @@
 // hashmaps3.rs
 
-// A list of scores (one per line) of a soccer match is given. Each line
-// is of the form :
+// 给出了一场足球比赛的比分列表（每行一个）。每行的形式为：
 // <team_1_name>,<team_2_name>,<team_1_goals>,<team_2_goals>
-// Example: England,France,4,2 (England scored 4 goals, France 2).
+// 示例：England,France,4,2（英格兰进了 4 个球，法国进了 2 个球）。
 
-// You have to build a scores table containing the name of the team, goals
-// the team scored, and goals the team conceded. One approach to build
-// the scores table is to use a Hashmap. The solution is partially
-// written to use a Hashmap, complete it to pass the test.
-
+// 你必须建立一个包含球队名称、球队进球和球队失球的得分表。
+// 建立得分表的一个方法是使用Hashmap。该解决方案部分是为了使用Hashmap而写的，完成它就可以通过测试。
 // Make me pass the tests!
 
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
-
-// I AM NOT DONE
 
 use std::collections::HashMap;
 
@@ -35,13 +29,23 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         let team_1_score: u8 = v[2].parse().unwrap();
         let team_2_name = v[1].to_string();
         let team_2_score: u8 = v[3].parse().unwrap();
-        // TODO: Populate the scores table with details extracted from the
-        // current line. Keep in mind that goals scored by team_1
-        // will be the number of goals conceded from team_2, and similarly
-        // goals scored by team_2 will be the number of goals conceded by
-        // team_1.
+
+        // 请记住，团队_1的进球数将是团队_2的失球数，同样，团队_2的进球数将是团队_1的失球数。
+        f(&mut scores, team_1_name, team_1_score, team_2_score);
+        f(&mut scores, team_2_name, team_2_score, team_1_score);
     }
     scores
+}
+
+fn f(scores: &mut HashMap<String, Team>, team_1_name: String, team_1_score: u8, team_2_score: u8) {
+    let team = scores.entry(team_1_name.clone()).or_insert(Team {
+        name: team_1_name.clone(),
+        goals_scored: 0,
+        goals_conceded: 0,
+    });
+
+    team.goals_scored += team_1_score;
+    team.goals_conceded += team_2_score;
 }
 
 #[cfg(test)]

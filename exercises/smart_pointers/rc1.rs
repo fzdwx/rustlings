@@ -1,11 +1,10 @@
 // rc1.rs
-// In this exercise, we want to express the concept of multiple owners via the Rc<T> type.
-// This is a model of our solar system - there is a Sun type and multiple Planets.
-// The Planets take ownership of the sun, indicating that they revolve around the sun.
+// 在这个练习中，我们想通过Rc<T>类型来表达多个所有者的概念。
+// 这是一个太阳系的模型--有一个太阳类型和多个行星。
+// 行星拥有太阳的所有权，表明它们围绕太阳旋转。
 
 // Make this code compile by using the proper Rc primitives to express that the sun has multiple owners.
 
-// I AM NOT DONE
 use std::rc::Rc;
 
 #[derive(Debug)]
@@ -53,18 +52,15 @@ fn main() {
     println!("reference count = {}", Rc::strong_count(&sun)); // 6 references
     jupiter.details();
 
-    // TODO
-    let saturn = Planet::Saturn(Rc::new(Sun {}));
+    let saturn = Planet::Saturn(sun.clone());
     println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
     saturn.details();
 
-    // TODO
-    let uranus = Planet::Uranus(Rc::new(Sun {}));
+    let uranus = Planet::Uranus(sun.clone());
     println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
     uranus.details();
 
-    // TODO
-    let neptune = Planet::Neptune(Rc::new(Sun {}));
+    let neptune = Planet::Neptune(sun.clone());
     println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
     neptune.details();
 
@@ -85,13 +81,13 @@ fn main() {
     drop(mars);
     println!("reference count = {}", Rc::strong_count(&sun)); // 4 references
 
-    // TODO
+    drop(venus);
     println!("reference count = {}", Rc::strong_count(&sun)); // 3 references
 
-    // TODO
+    drop(mercury);
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
 
-    // TODO
+    drop(earth);
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference
 
     assert_eq!(Rc::strong_count(&sun), 1);

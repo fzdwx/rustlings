@@ -2,28 +2,27 @@
 
 // This program uses an altered version of the code from errors4.
 
-// This exercise uses some concepts that we won't get to until later in the course, like `Box` and the
-// `From` trait. It's not important to understand them in detail right now, but you can read ahead if you like.
-// For now, think of the `Box<dyn ...>` type as an "I want anything that does ???" type, which, given
-// Rust's usual standards for runtime safety, should strike you as somewhat lenient!
+// 这个练习使用了一些我们在课程后期才会用到的概念，
+// 比如`Box`和`From`特性。现在详细了解它们并不重要，
+// 但如果你愿意，可以提前阅读。
+// 现在，把`Box<dyn ...>`类型看作是一个 "我想要做任何事情 "的类型，
+// 考虑到Rust对运行时安全的通常标准，它应该让你觉得有点宽松！"。
 
-// In short, this particular use case for boxes is for when you want to own a value and you care only that it is a
-// type which implements a particular trait. To do so, The Box is declared as of type Box<dyn Trait> where Trait is the trait
-// the compiler looks for on any value used in that context. For this exercise, that context is the potential errors
-// which can be returned in a Result.
+// 简而言之，当你想拥有一个值，而你只关心它是一个实现了特定特质的类型时，盒子的这种特殊用例就会出现。
+// 为了做到这一点，盒子被声明为Box<dyn Trait>类型，
+// 其中Trait是编译器在该上下文中使用的任何值上寻找的特性。
+// 在这个练习中，该上下文是可以在结果中返回的潜在错误。
 
-// What can we use to describe both errors? In other words, is there a trait which both errors implement?
+// 我们可以用什么来描述这两种错误？换句话说，这两种错误是否都有一个特质？
 
 // Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
 
-// TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), Box<dyn ???>> {
+fn main() -> Result<(), Box<dyn error::Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
     println!("output={:?}", PositiveNonzeroInteger::new(x)?);
